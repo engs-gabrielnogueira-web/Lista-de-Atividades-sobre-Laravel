@@ -8,6 +8,7 @@
 <body>
     <header>
         <h1>Sistema de Alunos</h1>
+        @include('partials.header')
     </header>
 
     <main>
