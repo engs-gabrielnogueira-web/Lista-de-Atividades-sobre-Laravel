@@ -27,3 +27,7 @@ Route::get('/categoria/{id}', function ($id) {
 Route::get('/usuario/{id}', function ($id) {
     return "Exibindo usuário com o ID: " . $id;
 });
+
+use App\Http\Controllers\alunoController;
+
+Route::resource('alunos', alunoController::class);
