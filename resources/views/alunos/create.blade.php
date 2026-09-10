@@ -3,6 +3,16 @@
 @section('content')
     <h2>Cadastrar Aluno</h2>
 
+    @if ($errors->any())
+        <div style="color: red; margin-bottom: 15px;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('alunos.store') }}" method="POST">
         @csrf
 
