@@ -31,3 +31,11 @@ Route::get('/usuario/{id}', function ($id) {
 Route::get('/alunos/relatorio', [alunoController::class, 'relatorio'])->name('alunos.relatorio');
 
 Route::resource('alunos', alunoController::class);
+
+Route::get('/admin', function () {
+    return 'Área Restrita: Painel do Administrador';
+})->middleware('role:admin');
+
+Route::get('/professor', function () {
+    return 'Área Restrita: Painel do Professor';
+})->middleware('role:user');
