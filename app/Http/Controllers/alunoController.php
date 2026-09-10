@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Curso;
+use App\Models\Aluno;
+use Illuminate\Http\Request;
 
 class alunoController extends Controller
 {
-    public function relatorio()
+    public function update(Request $request, Aluno $aluno)
     {
-                $cursos = Curso::with('alunos')->get();
+        $this->authorize('update', $aluno);
 
-        return view('alunos.relatorio', compact('cursos'));
+        $aluno->update($request->all());
+
+        return redirect()->route('alunos.index')->with('success', 'Aluno atualizado com sucesso!');
+    }
+    public function destroy(Aluno $aluno)
+    {
+        $this->authorize('delete', $aluno);
+
+        $aluno->delete();
+
+        return redirect()->route('alunos.index')->with('success', 'Aluno removido com sucesso!');
     }
 }
