@@ -2,50 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Aluno;
-use App\Http\Requests\AlunoRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Curso;
 
-class AlunoController extends Controller
+class alunoController extends Controller
 {
-    public function index()
+    public function relatorio()
     {
-        $alunos = Aluno::all();
-        return view('alunos.index', compact('alunos'));
-    }
+                $cursos = Curso::with('alunos')->get();
 
-    public function create()
-    {
-        return view('alunos.create');
-    }
-
-    public function store(AlunoRequest $request)
-    {
-        Aluno::create($request->validated());
-
-        return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso!');
-    }
-
-    public function show(Aluno $aluno)
-    {
-        return view('alunos.show', compact('aluno'));
-    }
-
-    public function edit(Aluno $aluno)
-    {
-        return view('alunos.edit', compact('aluno'));
-    }
-
-    public function update(AlunoRequest $request, Aluno $aluno)
-    {
-        $aluno->update($request->validated());
-
-        return redirect()->route('alunos.index')->with('success', 'Aluno atualizado com sucesso!');
-    }
-
-    public function destroy(Aluno $aluno)
-    {
-        $aluno->delete();
-
-        return redirect()->route('alunos.index')->with('success', 'Aluno excluído com sucesso!');
+        return view('alunos.relatorio', compact('cursos'));
     }
 }
