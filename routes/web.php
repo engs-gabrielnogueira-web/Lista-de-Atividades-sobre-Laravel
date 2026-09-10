@@ -27,6 +27,7 @@ Route::get('/usuario/{id}', function ($id) {
     return "Exibindo usuário com o ID: " . $id;
 });
 
+
 Route::get('/alunos/relatorio', [alunoController::class, 'relatorio'])->name('alunos.relatorio');
 
 Route::resource('alunos', alunoController::class);
